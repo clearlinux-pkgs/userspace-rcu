@@ -1,0 +1,4 @@
+Configure miss: getcpuid
+Configure miss: gettid
+Configure miss: memeset
+Configure miss: tput
