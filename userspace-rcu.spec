@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x17280A9781186ACF (mathieu.desnoyers@efficios.com)
 #
 Name     : userspace-rcu
-Version  : 0.10.0
-Release  : 1
-URL      : https://www.lttng.org/files/urcu/userspace-rcu-0.10.0.tar.bz2
-Source0  : https://www.lttng.org/files/urcu/userspace-rcu-0.10.0.tar.bz2
-Source99 : https://www.lttng.org/files/urcu/userspace-rcu-0.10.0.tar.bz2.asc
+Version  : 0.10.1
+Release  : 2
+URL      : https://www.lttng.org/files/urcu/userspace-rcu-0.10.1.tar.bz2
+Source0  : https://www.lttng.org/files/urcu/userspace-rcu-0.10.1.tar.bz2
+Source99 : https://www.lttng.org/files/urcu/userspace-rcu-0.10.1.tar.bz2.asc
 Summary  : A userspace RCU (read-copy-update) library, bulletproof version
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -48,14 +48,14 @@ lib components for the userspace-rcu package.
 
 
 %prep
-%setup -q -n userspace-rcu-0.10.0
+%setup -q -n userspace-rcu-0.10.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1514252287
+export SOURCE_DATE_EPOCH=1516760583
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -67,7 +67,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1514252287
+export SOURCE_DATE_EPOCH=1516760583
 rm -rf %{buildroot}
 %make_install
 

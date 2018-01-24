@@ -1,5 +1,5 @@
 PKG_NAME := userspace-rcu
-URL = 
-
+URL = https://www.lttng.org/files/urcu/userspace-rcu-0.10.1.tar.bz2
+ARCHIVES = 
 
 include ../common/Makefile.common
