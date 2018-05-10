@@ -6,7 +6,7 @@
 #
 Name     : userspace-rcu
 Version  : 0.10.1
-Release  : 3
+Release  : 4
 URL      : https://www.lttng.org/files/urcu/userspace-rcu-0.10.1.tar.bz2
 Source0  : https://www.lttng.org/files/urcu/userspace-rcu-0.10.1.tar.bz2
 Source99 : https://www.lttng.org/files/urcu/userspace-rcu-0.10.1.tar.bz2.asc
