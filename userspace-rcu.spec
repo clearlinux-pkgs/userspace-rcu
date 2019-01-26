@@ -5,16 +5,16 @@
 # Source0 file verified with key 0x17280A9781186ACF (mathieu.desnoyers@efficios.com)
 #
 Name     : userspace-rcu
-Version  : 0.10.1
-Release  : 4
-URL      : https://www.lttng.org/files/urcu/userspace-rcu-0.10.1.tar.bz2
-Source0  : https://www.lttng.org/files/urcu/userspace-rcu-0.10.1.tar.bz2
-Source99 : https://www.lttng.org/files/urcu/userspace-rcu-0.10.1.tar.bz2.asc
+Version  : 0.10.2
+Release  : 5
+URL      : https://www.lttng.org/files/urcu/userspace-rcu-0.10.2.tar.bz2
+Source0  : https://www.lttng.org/files/urcu/userspace-rcu-0.10.2.tar.bz2
+Source99 : https://www.lttng.org/files/urcu/userspace-rcu-0.10.2.tar.bz2.asc
 Summary  : A userspace RCU (read-copy-update) library, bulletproof version
 Group    : Development/Tools
 License  : LGPL-2.1
-Requires: userspace-rcu-lib
-Requires: userspace-rcu-doc
+Requires: userspace-rcu-lib = %{version}-%{release}
+Requires: userspace-rcu-license = %{version}-%{release}
 
 %description
 Userspace RCU Implementation
@@ -24,8 +24,8 @@ by Mathieu Desnoyers and Paul E. McKenney
 %package dev
 Summary: dev components for the userspace-rcu package.
 Group: Development
-Requires: userspace-rcu-lib
-Provides: userspace-rcu-devel
+Requires: userspace-rcu-lib = %{version}-%{release}
+Provides: userspace-rcu-devel = %{version}-%{release}
 
 %description dev
 dev components for the userspace-rcu package.
@@ -42,20 +42,29 @@ doc components for the userspace-rcu package.
 %package lib
 Summary: lib components for the userspace-rcu package.
 Group: Libraries
+Requires: userspace-rcu-license = %{version}-%{release}
 
 %description lib
 lib components for the userspace-rcu package.
 
 
+%package license
+Summary: license components for the userspace-rcu package.
+Group: Default
+
+%description license
+license components for the userspace-rcu package.
+
+
 %prep
-%setup -q -n userspace-rcu-0.10.1
+%setup -q -n userspace-rcu-0.10.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1516760583
+export SOURCE_DATE_EPOCH=1548523342
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -67,8 +76,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1516760583
+export SOURCE_DATE_EPOCH=1548523342
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/userspace-rcu
+cp LICENSE %{buildroot}/usr/share/package-licenses/userspace-rcu/LICENSE
 %make_install
 
 %files
@@ -132,7 +143,7 @@ rm -rf %{buildroot}
 /usr/lib64/pkgconfig/liburcu.pc
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/doc/userspace\-rcu/*
 
 %files lib
@@ -151,3 +162,7 @@ rm -rf %{buildroot}
 /usr/lib64/liburcu-signal.so.6.0.0
 /usr/lib64/liburcu.so.6
 /usr/lib64/liburcu.so.6.0.0
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/userspace-rcu/LICENSE
