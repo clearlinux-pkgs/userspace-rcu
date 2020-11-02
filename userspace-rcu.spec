@@ -6,10 +6,10 @@
 #
 Name     : userspace-rcu
 Version  : 0.11.1
-Release  : 6
+Release  : 7
 URL      : https://www.lttng.org/files/urcu/userspace-rcu-0.11.1.tar.bz2
 Source0  : https://www.lttng.org/files/urcu/userspace-rcu-0.11.1.tar.bz2
-Source99 : https://www.lttng.org/files/urcu/userspace-rcu-0.11.1.tar.bz2.asc
+Source1  : https://www.lttng.org/files/urcu/userspace-rcu-0.11.1.tar.bz2.asc
 Summary  : A userspace RCU (read-copy-update) library, bulletproof version
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -26,7 +26,6 @@ Summary: dev components for the userspace-rcu package.
 Group: Development
 Requires: userspace-rcu-lib = %{version}-%{release}
 Provides: userspace-rcu-devel = %{version}-%{release}
-Requires: userspace-rcu = %{version}-%{release}
 Requires: userspace-rcu = %{version}-%{release}
 
 %description dev
@@ -60,35 +59,37 @@ license components for the userspace-rcu package.
 
 %prep
 %setup -q -n userspace-rcu-0.11.1
+cd %{_builddir}/userspace-rcu-0.11.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1559664967
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604356213
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1559664967
+export SOURCE_DATE_EPOCH=1604356213
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/userspace-rcu
-cp LICENSE %{buildroot}/usr/share/package-licenses/userspace-rcu/LICENSE
+cp %{_builddir}/userspace-rcu-0.11.1/LICENSE %{buildroot}/usr/share/package-licenses/userspace-rcu/50d9b10907fd0d9dcc13564a9eb55c465c33b54d
 %make_install
 
 %files
@@ -96,7 +97,13 @@ cp LICENSE %{buildroot}/usr/share/package-licenses/userspace-rcu/LICENSE
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/urcu-bp.h
+/usr/include/urcu-call-rcu.h
+/usr/include/urcu-defer.h
+/usr/include/urcu-flavor.h
+/usr/include/urcu-pointer.h
+/usr/include/urcu-qsbr.h
+/usr/include/urcu.h
 /usr/include/urcu/arch.h
 /usr/include/urcu/arch/generic.h
 /usr/include/urcu/call-rcu.h
@@ -195,4 +202,4 @@ cp LICENSE %{buildroot}/usr/share/package-licenses/userspace-rcu/LICENSE
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/userspace-rcu/LICENSE
+/usr/share/package-licenses/userspace-rcu/50d9b10907fd0d9dcc13564a9eb55c465c33b54d
