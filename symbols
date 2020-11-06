@@ -68,6 +68,7 @@ liburcu-bp.so.6:urcu_bp_read_ongoing
 liburcu-bp.so.6:urcu_bp_read_unlock
 liburcu-bp.so.6:urcu_bp_register
 liburcu-bp.so.6:urcu_bp_register_rculfhash_atfork
+liburcu-bp.so.6:urcu_bp_register_thread
 liburcu-bp.so.6:urcu_bp_set_cpu_call_rcu_data
 liburcu-bp.so.6:urcu_bp_set_pointer_sym
 liburcu-bp.so.6:urcu_bp_set_thread_call_rcu_data

@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x17280A9781186ACF (mathieu.desnoyers@efficios.com)
 #
 Name     : userspace-rcu
-Version  : 0.11.1
-Release  : 7
-URL      : https://www.lttng.org/files/urcu/userspace-rcu-0.11.1.tar.bz2
-Source0  : https://www.lttng.org/files/urcu/userspace-rcu-0.11.1.tar.bz2
-Source1  : https://www.lttng.org/files/urcu/userspace-rcu-0.11.1.tar.bz2.asc
+Version  : 0.12.1
+Release  : 8
+URL      : https://www.lttng.org/files/urcu/userspace-rcu-0.12.1.tar.bz2
+Source0  : https://www.lttng.org/files/urcu/userspace-rcu-0.12.1.tar.bz2
+Source1  : https://www.lttng.org/files/urcu/userspace-rcu-0.12.1.tar.bz2.asc
 Summary  : A userspace RCU (read-copy-update) library, bulletproof version
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -58,15 +58,15 @@ license components for the userspace-rcu package.
 
 
 %prep
-%setup -q -n userspace-rcu-0.11.1
-cd %{_builddir}/userspace-rcu-0.11.1
+%setup -q -n userspace-rcu-0.12.1
+cd %{_builddir}/userspace-rcu-0.12.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604356213
+export SOURCE_DATE_EPOCH=1604707023
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -86,10 +86,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1604356213
+export SOURCE_DATE_EPOCH=1604707023
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/userspace-rcu
-cp %{_builddir}/userspace-rcu-0.11.1/LICENSE %{buildroot}/usr/share/package-licenses/userspace-rcu/50d9b10907fd0d9dcc13564a9eb55c465c33b54d
+cp %{_builddir}/userspace-rcu-0.12.1/LICENSE %{buildroot}/usr/share/package-licenses/userspace-rcu/50d9b10907fd0d9dcc13564a9eb55c465c33b54d
 %make_install
 
 %files
@@ -140,6 +140,7 @@ cp %{_builddir}/userspace-rcu-0.11.1/LICENSE %{buildroot}/usr/share/package-lice
 /usr/include/urcu/static/urcu-mb.h
 /usr/include/urcu/static/urcu-memb.h
 /usr/include/urcu/static/urcu-qsbr.h
+/usr/include/urcu/static/urcu-signal-nr.h
 /usr/include/urcu/static/urcu-signal.h
 /usr/include/urcu/static/urcu.h
 /usr/include/urcu/static/wfcqueue.h
