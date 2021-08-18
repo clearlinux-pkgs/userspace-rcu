@@ -5,21 +5,22 @@
 # Source0 file verified with key 0x17280A9781186ACF (mathieu.desnoyers@efficios.com)
 #
 Name     : userspace-rcu
-Version  : 0.12.2
-Release  : 9
-URL      : https://www.lttng.org/files/urcu/userspace-rcu-0.12.2.tar.bz2
-Source0  : https://www.lttng.org/files/urcu/userspace-rcu-0.12.2.tar.bz2
-Source1  : https://www.lttng.org/files/urcu/userspace-rcu-0.12.2.tar.bz2.asc
+Version  : 0.13.0
+Release  : 10
+URL      : https://www.lttng.org/files/urcu/userspace-rcu-0.13.0.tar.bz2
+Source0  : https://www.lttng.org/files/urcu/userspace-rcu-0.13.0.tar.bz2
+Source1  : https://www.lttng.org/files/urcu/userspace-rcu-0.13.0.tar.bz2.asc
 Summary  : A userspace RCU (read-copy-update) library, bulletproof version
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: userspace-rcu-lib = %{version}-%{release}
 Requires: userspace-rcu-license = %{version}-%{release}
+BuildRequires : grep
 
 %description
-Userspace RCU Implementation
-============================
-by Mathieu Desnoyers and Paul E. McKenney
+This directory contains the serialized ABI definitions for a typical build of
+the liburcu librairies. This information is extracted using libabigail
+(https://sourceware.org/libabigail/).
 
 %package dev
 Summary: dev components for the userspace-rcu package.
@@ -58,23 +59,23 @@ license components for the userspace-rcu package.
 
 
 %prep
-%setup -q -n userspace-rcu-0.12.2
-cd %{_builddir}/userspace-rcu-0.12.2
+%setup -q -n userspace-rcu-0.13.0
+cd %{_builddir}/userspace-rcu-0.13.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1614831647
+export SOURCE_DATE_EPOCH=1629302559
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -86,10 +87,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1614831647
+export SOURCE_DATE_EPOCH=1629302559
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/userspace-rcu
-cp %{_builddir}/userspace-rcu-0.12.2/LICENSE %{buildroot}/usr/share/package-licenses/userspace-rcu/50d9b10907fd0d9dcc13564a9eb55c465c33b54d
+cp %{_builddir}/userspace-rcu-0.13.0/LICENSE %{buildroot}/usr/share/package-licenses/userspace-rcu/50d9b10907fd0d9dcc13564a9eb55c465c33b54d
 %make_install
 
 %files
@@ -105,7 +106,22 @@ cp %{_builddir}/userspace-rcu-0.12.2/LICENSE %{buildroot}/usr/share/package-lice
 /usr/include/urcu-qsbr.h
 /usr/include/urcu.h
 /usr/include/urcu/arch.h
+/usr/include/urcu/arch/aarch64.h
+/usr/include/urcu/arch/alpha.h
+/usr/include/urcu/arch/arm.h
+/usr/include/urcu/arch/gcc.h
 /usr/include/urcu/arch/generic.h
+/usr/include/urcu/arch/hppa.h
+/usr/include/urcu/arch/ia64.h
+/usr/include/urcu/arch/m68k.h
+/usr/include/urcu/arch/mips.h
+/usr/include/urcu/arch/nios2.h
+/usr/include/urcu/arch/ppc.h
+/usr/include/urcu/arch/riscv.h
+/usr/include/urcu/arch/s390.h
+/usr/include/urcu/arch/sparc64.h
+/usr/include/urcu/arch/tile.h
+/usr/include/urcu/arch/x86.h
 /usr/include/urcu/call-rcu.h
 /usr/include/urcu/cds.h
 /usr/include/urcu/compiler.h
@@ -150,7 +166,22 @@ cp %{_builddir}/userspace-rcu-0.12.2/LICENSE %{buildroot}/usr/share/package-lice
 /usr/include/urcu/system.h
 /usr/include/urcu/tls-compat.h
 /usr/include/urcu/uatomic.h
+/usr/include/urcu/uatomic/aarch64.h
+/usr/include/urcu/uatomic/alpha.h
+/usr/include/urcu/uatomic/arm.h
+/usr/include/urcu/uatomic/gcc.h
 /usr/include/urcu/uatomic/generic.h
+/usr/include/urcu/uatomic/hppa.h
+/usr/include/urcu/uatomic/ia64.h
+/usr/include/urcu/uatomic/m68k.h
+/usr/include/urcu/uatomic/mips.h
+/usr/include/urcu/uatomic/nios2.h
+/usr/include/urcu/uatomic/ppc.h
+/usr/include/urcu/uatomic/riscv.h
+/usr/include/urcu/uatomic/s390.h
+/usr/include/urcu/uatomic/sparc64.h
+/usr/include/urcu/uatomic/tile.h
+/usr/include/urcu/uatomic/x86.h
 /usr/include/urcu/uatomic_arch.h
 /usr/include/urcu/urcu-bp.h
 /usr/include/urcu/urcu-futex.h
@@ -184,22 +215,22 @@ cp %{_builddir}/userspace-rcu-0.12.2/LICENSE %{buildroot}/usr/share/package-lice
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/liburcu-bp.so.6
-/usr/lib64/liburcu-bp.so.6.1.0
-/usr/lib64/liburcu-cds.so.6
-/usr/lib64/liburcu-cds.so.6.1.0
-/usr/lib64/liburcu-common.so.6
-/usr/lib64/liburcu-common.so.6.1.0
-/usr/lib64/liburcu-mb.so.6
-/usr/lib64/liburcu-mb.so.6.1.0
-/usr/lib64/liburcu-memb.so.6
-/usr/lib64/liburcu-memb.so.6.1.0
-/usr/lib64/liburcu-qsbr.so.6
-/usr/lib64/liburcu-qsbr.so.6.1.0
-/usr/lib64/liburcu-signal.so.6
-/usr/lib64/liburcu-signal.so.6.1.0
-/usr/lib64/liburcu.so.6
-/usr/lib64/liburcu.so.6.1.0
+/usr/lib64/liburcu-bp.so.8
+/usr/lib64/liburcu-bp.so.8.0.0
+/usr/lib64/liburcu-cds.so.8
+/usr/lib64/liburcu-cds.so.8.0.0
+/usr/lib64/liburcu-common.so.8
+/usr/lib64/liburcu-common.so.8.0.0
+/usr/lib64/liburcu-mb.so.8
+/usr/lib64/liburcu-mb.so.8.0.0
+/usr/lib64/liburcu-memb.so.8
+/usr/lib64/liburcu-memb.so.8.0.0
+/usr/lib64/liburcu-qsbr.so.8
+/usr/lib64/liburcu-qsbr.so.8.0.0
+/usr/lib64/liburcu-signal.so.8
+/usr/lib64/liburcu-signal.so.8.0.0
+/usr/lib64/liburcu.so.8
+/usr/lib64/liburcu.so.8.0.0
 
 %files license
 %defattr(0644,root,root,0755)

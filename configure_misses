@@ -1,3 +1,4 @@
 Configure miss: getcpuid
 Configure miss: memeset
 Configure miss: tput
+Configure miss: whether C compiler accepts -Wtautological-constant-out-of-range-compare
