@@ -5,21 +5,24 @@
 # Source0 file verified with key 0x17280A9781186ACF (mathieu.desnoyers@efficios.com)
 #
 Name     : userspace-rcu
-Version  : 0.13.2
-Release  : 12
-URL      : https://www.lttng.org/files/urcu/userspace-rcu-0.13.2.tar.bz2
-Source0  : https://www.lttng.org/files/urcu/userspace-rcu-0.13.2.tar.bz2
-Source1  : https://www.lttng.org/files/urcu/userspace-rcu-0.13.2.tar.bz2.asc
+Version  : 0.14.0
+Release  : 13
+URL      : https://www.lttng.org/files/urcu/userspace-rcu-0.14.0.tar.bz2
+Source0  : https://www.lttng.org/files/urcu/userspace-rcu-0.14.0.tar.bz2
+Source1  : https://www.lttng.org/files/urcu/userspace-rcu-0.14.0.tar.bz2.asc
 Summary  : A userspace RCU (read-copy-update) library, bulletproof version
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: userspace-rcu-lib = %{version}-%{release}
 Requires: userspace-rcu-license = %{version}-%{release}
 BuildRequires : grep
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 This directory contains the serialized ABI definitions for a typical build of
-the liburcu librairies. This information is extracted using libabigail
+the liburcu libraries. This information is extracted using libabigail
 (https://sourceware.org/libabigail/).
 
 %package dev
@@ -59,23 +62,23 @@ license components for the userspace-rcu package.
 
 
 %prep
-%setup -q -n userspace-rcu-0.13.2
-cd %{_builddir}/userspace-rcu-0.13.2
+%setup -q -n userspace-rcu-0.14.0
+cd %{_builddir}/userspace-rcu-0.14.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1661195913
+export SOURCE_DATE_EPOCH=1676420988
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -87,10 +90,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1661195913
+export SOURCE_DATE_EPOCH=1676420988
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/userspace-rcu
-cp %{_builddir}/userspace-rcu-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/userspace-rcu/50d9b10907fd0d9dcc13564a9eb55c465c33b54d
+cp %{_builddir}/userspace-rcu-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/userspace-rcu/50d9b10907fd0d9dcc13564a9eb55c465c33b54d || :
 %make_install
 
 %files
@@ -122,6 +125,7 @@ cp %{_builddir}/userspace-rcu-%{version}/LICENSE %{buildroot}/usr/share/package-
 /usr/include/urcu/arch/sparc64.h
 /usr/include/urcu/arch/tile.h
 /usr/include/urcu/arch/x86.h
+/usr/include/urcu/assert.h
 /usr/include/urcu/call-rcu.h
 /usr/include/urcu/cds.h
 /usr/include/urcu/compiler.h
@@ -187,6 +191,7 @@ cp %{_builddir}/userspace-rcu-%{version}/LICENSE %{buildroot}/usr/share/package-
 /usr/include/urcu/urcu-futex.h
 /usr/include/urcu/urcu-mb.h
 /usr/include/urcu/urcu-memb.h
+/usr/include/urcu/urcu-poll.h
 /usr/include/urcu/urcu-qsbr.h
 /usr/include/urcu/urcu-signal.h
 /usr/include/urcu/urcu.h
@@ -217,21 +222,21 @@ cp %{_builddir}/userspace-rcu-%{version}/LICENSE %{buildroot}/usr/share/package-
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/liburcu-bp.so.8
-/usr/lib64/liburcu-bp.so.8.0.0
+/usr/lib64/liburcu-bp.so.8.1.0
 /usr/lib64/liburcu-cds.so.8
-/usr/lib64/liburcu-cds.so.8.0.0
+/usr/lib64/liburcu-cds.so.8.1.0
 /usr/lib64/liburcu-common.so.8
-/usr/lib64/liburcu-common.so.8.0.0
+/usr/lib64/liburcu-common.so.8.1.0
 /usr/lib64/liburcu-mb.so.8
-/usr/lib64/liburcu-mb.so.8.0.0
+/usr/lib64/liburcu-mb.so.8.1.0
 /usr/lib64/liburcu-memb.so.8
-/usr/lib64/liburcu-memb.so.8.0.0
+/usr/lib64/liburcu-memb.so.8.1.0
 /usr/lib64/liburcu-qsbr.so.8
-/usr/lib64/liburcu-qsbr.so.8.0.0
+/usr/lib64/liburcu-qsbr.so.8.1.0
 /usr/lib64/liburcu-signal.so.8
-/usr/lib64/liburcu-signal.so.8.0.0
+/usr/lib64/liburcu-signal.so.8.1.0
 /usr/lib64/liburcu.so.8
-/usr/lib64/liburcu.so.8.0.0
+/usr/lib64/liburcu.so.8.1.0
 
 %files license
 %defattr(0644,root,root,0755)

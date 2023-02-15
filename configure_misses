@@ -1,4 +1,7 @@
 Configure miss: getcpuid
+Configure miss: if g++ -std=c++11 static flag -static works
 Configure miss: memeset
+Configure miss: time
 Configure miss: tput
 Configure miss: whether C compiler accepts -Wtautological-constant-out-of-range-compare
+Configure miss: whether C++ compiler accepts -Wtautological-constant-out-of-range-compare

@@ -29,6 +29,7 @@ liburcu-bp.so.8:urcu_bp_get_call_rcu_thread
 liburcu-bp.so.8:urcu_bp_get_cpu_call_rcu_data
 liburcu-bp.so.8:urcu_bp_get_default_call_rcu_data
 liburcu-bp.so.8:urcu_bp_get_thread_call_rcu_data
+liburcu-bp.so.8:urcu_bp_poll_state_synchronize_rcu
 liburcu-bp.so.8:urcu_bp_read_lock
 liburcu-bp.so.8:urcu_bp_read_ongoing
 liburcu-bp.so.8:urcu_bp_read_unlock
@@ -38,6 +39,7 @@ liburcu-bp.so.8:urcu_bp_register_thread
 liburcu-bp.so.8:urcu_bp_set_cpu_call_rcu_data
 liburcu-bp.so.8:urcu_bp_set_pointer_sym
 liburcu-bp.so.8:urcu_bp_set_thread_call_rcu_data
+liburcu-bp.so.8:urcu_bp_start_poll_synchronize_rcu
 liburcu-bp.so.8:urcu_bp_synchronize_rcu
 liburcu-bp.so.8:urcu_bp_unregister_rculfhash_atfork
 liburcu-bp.so.8:urcu_bp_xchg_pointer_sym
@@ -58,6 +60,7 @@ liburcu-cds.so.8:cds_lfht_is_node_deleted
 liburcu-cds.so.8:cds_lfht_lookup
 liburcu-cds.so.8:cds_lfht_next
 liburcu-cds.so.8:cds_lfht_next_duplicate
+liburcu-cds.so.8:cds_lfht_node_init_deleted
 liburcu-cds.so.8:cds_lfht_replace
 liburcu-cds.so.8:cds_lfht_resize
 liburcu-cds.so.8:cds_lfq_dequeue_rcu
@@ -159,6 +162,7 @@ liburcu-mb.so.8:urcu_mb_defer_exit
 liburcu-mb.so.8:urcu_mb_defer_rcu
 liburcu-mb.so.8:urcu_mb_defer_register_thread
 liburcu-mb.so.8:urcu_mb_defer_unregister_thread
+liburcu-mb.so.8:urcu_mb_exit
 liburcu-mb.so.8:urcu_mb_free_all_cpu_call_rcu_data
 liburcu-mb.so.8:urcu_mb_get_call_rcu_data
 liburcu-mb.so.8:urcu_mb_get_call_rcu_thread
@@ -166,6 +170,7 @@ liburcu-mb.so.8:urcu_mb_get_cpu_call_rcu_data
 liburcu-mb.so.8:urcu_mb_get_default_call_rcu_data
 liburcu-mb.so.8:urcu_mb_get_thread_call_rcu_data
 liburcu-mb.so.8:urcu_mb_init
+liburcu-mb.so.8:urcu_mb_poll_state_synchronize_rcu
 liburcu-mb.so.8:urcu_mb_read_lock
 liburcu-mb.so.8:urcu_mb_read_ongoing
 liburcu-mb.so.8:urcu_mb_read_unlock
@@ -173,6 +178,7 @@ liburcu-mb.so.8:urcu_mb_register_rculfhash_atfork
 liburcu-mb.so.8:urcu_mb_register_thread
 liburcu-mb.so.8:urcu_mb_set_cpu_call_rcu_data
 liburcu-mb.so.8:urcu_mb_set_thread_call_rcu_data
+liburcu-mb.so.8:urcu_mb_start_poll_synchronize_rcu
 liburcu-mb.so.8:urcu_mb_synchronize_rcu
 liburcu-mb.so.8:urcu_mb_unregister_rculfhash_atfork
 liburcu-mb.so.8:urcu_mb_unregister_thread
@@ -196,6 +202,7 @@ liburcu-memb.so.8:urcu_memb_defer_exit
 liburcu-memb.so.8:urcu_memb_defer_rcu
 liburcu-memb.so.8:urcu_memb_defer_register_thread
 liburcu-memb.so.8:urcu_memb_defer_unregister_thread
+liburcu-memb.so.8:urcu_memb_exit
 liburcu-memb.so.8:urcu_memb_free_all_cpu_call_rcu_data
 liburcu-memb.so.8:urcu_memb_get_call_rcu_data
 liburcu-memb.so.8:urcu_memb_get_call_rcu_thread
@@ -203,6 +210,7 @@ liburcu-memb.so.8:urcu_memb_get_cpu_call_rcu_data
 liburcu-memb.so.8:urcu_memb_get_default_call_rcu_data
 liburcu-memb.so.8:urcu_memb_get_thread_call_rcu_data
 liburcu-memb.so.8:urcu_memb_init
+liburcu-memb.so.8:urcu_memb_poll_state_synchronize_rcu
 liburcu-memb.so.8:urcu_memb_read_lock
 liburcu-memb.so.8:urcu_memb_read_ongoing
 liburcu-memb.so.8:urcu_memb_read_unlock
@@ -210,6 +218,7 @@ liburcu-memb.so.8:urcu_memb_register_rculfhash_atfork
 liburcu-memb.so.8:urcu_memb_register_thread
 liburcu-memb.so.8:urcu_memb_set_cpu_call_rcu_data
 liburcu-memb.so.8:urcu_memb_set_thread_call_rcu_data
+liburcu-memb.so.8:urcu_memb_start_poll_synchronize_rcu
 liburcu-memb.so.8:urcu_memb_synchronize_rcu
 liburcu-memb.so.8:urcu_memb_unregister_rculfhash_atfork
 liburcu-memb.so.8:urcu_memb_unregister_thread
@@ -240,6 +249,7 @@ liburcu-qsbr.so.8:urcu_qsbr_get_call_rcu_thread
 liburcu-qsbr.so.8:urcu_qsbr_get_cpu_call_rcu_data
 liburcu-qsbr.so.8:urcu_qsbr_get_default_call_rcu_data
 liburcu-qsbr.so.8:urcu_qsbr_get_thread_call_rcu_data
+liburcu-qsbr.so.8:urcu_qsbr_poll_state_synchronize_rcu
 liburcu-qsbr.so.8:urcu_qsbr_quiescent_state
 liburcu-qsbr.so.8:urcu_qsbr_read_lock
 liburcu-qsbr.so.8:urcu_qsbr_read_ongoing
@@ -248,6 +258,7 @@ liburcu-qsbr.so.8:urcu_qsbr_register_rculfhash_atfork
 liburcu-qsbr.so.8:urcu_qsbr_register_thread
 liburcu-qsbr.so.8:urcu_qsbr_set_cpu_call_rcu_data
 liburcu-qsbr.so.8:urcu_qsbr_set_thread_call_rcu_data
+liburcu-qsbr.so.8:urcu_qsbr_start_poll_synchronize_rcu
 liburcu-qsbr.so.8:urcu_qsbr_synchronize_rcu
 liburcu-qsbr.so.8:urcu_qsbr_thread_offline
 liburcu-qsbr.so.8:urcu_qsbr_thread_online
@@ -281,6 +292,7 @@ liburcu-signal.so.8:urcu_signal_get_cpu_call_rcu_data
 liburcu-signal.so.8:urcu_signal_get_default_call_rcu_data
 liburcu-signal.so.8:urcu_signal_get_thread_call_rcu_data
 liburcu-signal.so.8:urcu_signal_init
+liburcu-signal.so.8:urcu_signal_poll_state_synchronize_rcu
 liburcu-signal.so.8:urcu_signal_read_lock
 liburcu-signal.so.8:urcu_signal_read_ongoing
 liburcu-signal.so.8:urcu_signal_read_unlock
@@ -288,6 +300,7 @@ liburcu-signal.so.8:urcu_signal_register_rculfhash_atfork
 liburcu-signal.so.8:urcu_signal_register_thread
 liburcu-signal.so.8:urcu_signal_set_cpu_call_rcu_data
 liburcu-signal.so.8:urcu_signal_set_thread_call_rcu_data
+liburcu-signal.so.8:urcu_signal_start_poll_synchronize_rcu
 liburcu-signal.so.8:urcu_signal_synchronize_rcu
 liburcu-signal.so.8:urcu_signal_unregister_rculfhash_atfork
 liburcu-signal.so.8:urcu_signal_unregister_thread
@@ -311,6 +324,7 @@ liburcu.so.8:urcu_memb_defer_exit
 liburcu.so.8:urcu_memb_defer_rcu
 liburcu.so.8:urcu_memb_defer_register_thread
 liburcu.so.8:urcu_memb_defer_unregister_thread
+liburcu.so.8:urcu_memb_exit
 liburcu.so.8:urcu_memb_free_all_cpu_call_rcu_data
 liburcu.so.8:urcu_memb_get_call_rcu_data
 liburcu.so.8:urcu_memb_get_call_rcu_thread
@@ -318,6 +332,7 @@ liburcu.so.8:urcu_memb_get_cpu_call_rcu_data
 liburcu.so.8:urcu_memb_get_default_call_rcu_data
 liburcu.so.8:urcu_memb_get_thread_call_rcu_data
 liburcu.so.8:urcu_memb_init
+liburcu.so.8:urcu_memb_poll_state_synchronize_rcu
 liburcu.so.8:urcu_memb_read_lock
 liburcu.so.8:urcu_memb_read_ongoing
 liburcu.so.8:urcu_memb_read_unlock
@@ -325,6 +340,7 @@ liburcu.so.8:urcu_memb_register_rculfhash_atfork
 liburcu.so.8:urcu_memb_register_thread
 liburcu.so.8:urcu_memb_set_cpu_call_rcu_data
 liburcu.so.8:urcu_memb_set_thread_call_rcu_data
+liburcu.so.8:urcu_memb_start_poll_synchronize_rcu
 liburcu.so.8:urcu_memb_synchronize_rcu
 liburcu.so.8:urcu_memb_unregister_rculfhash_atfork
 liburcu.so.8:urcu_memb_unregister_thread
