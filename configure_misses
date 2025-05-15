@@ -6,6 +6,8 @@ Configure miss: if g++ -std=c++11 static flag -static works
 Configure miss: if g++ -std=c++11 static flag -static works
 Configure miss: memeset
 Configure miss: memeset
+Configure miss: stdbool.h that conforms to C99
+Configure miss: stdbool.h that conforms to C99
 Configure miss: time
 Configure miss: time
 Configure miss: tput
